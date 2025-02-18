@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { TeamApiService } from '../../services/team-api.service';
 import { Team } from '../../models/team.model';
 import { TeamCardComponent } from "../team-card/team-card.component";
 import { CommonModule } from '@angular/common';
@@ -10,10 +11,20 @@ import { CommonModule } from '@angular/common';
   imports: [TeamCardComponent, CommonModule]
 })
 export class TeamListComponent {
-  teams: Team[] = [
-    { name: 'Real Madrid', country: 'España', stadium: 'Santiago Bernabéu' },
-    { name: 'Barcelona', country: 'España', stadium: 'Spotify Camp Nou' },
-    { name: 'Manchester United', country: 'Inglaterra', stadium: 'Old Trafford' },
-    { name: 'Bayern Munich', country: 'Alemania', stadium: 'Allianz Arena' }
-  ];
+  teams: Team[] = [];
+
+  constructor(private teamService: TeamApiService) {}
+
+  loadTeams() {
+    console.log('🔹 Botón clicado, ejecutando loadTeams()');
+    this.teamService.getTeams().subscribe({
+      next: (data) => {
+        console.log('✅ Datos recibidos:', data);
+        this.teams = data;
+      },
+      error: (error) => {
+        console.error('❌ Error al obtener equipos:', error);
+      }
+    });
+  }
 }
