@@ -1,0 +1,30 @@
+<div class="container mt-4 text-light">
+  <h1 class="text-center mb-4">⚽ Gestión de Equipos de Fútbol</h1>
+  
+  <!-- 📋 Lista de Equipos -->
+  <ul class="list-group mb-4">
+    <li class="list-group-item d-flex justify-content-between align-items-center" *ngFor="let equipo of equipos">
+      <span>
+        <strong class="text-warning">{{ equipo.name }}</strong> - 
+        <span class="text-light">{{ equipo.country }}</span> - 
+        <em class="text-info">{{ equipo.stadium }}</em>
+      </span>
+      <button (click)="eliminarEquipo(equipo.id)" class="btn btn-danger btn-sm">🗑️ Eliminar</button>
+    </li>
+  </ul>
+
+  <!-- 📥 Formulario de Agregar Equipos -->
+  <h2 class="text-center mb-3">➕ Agregar Nuevo Equipo</h2>
+  <form (ngSubmit)="agregarEquipo()" class="p-3">
+    <div class="mb-3">
+      <input [(ngModel)]="nuevoEquipo.name" name="name" class="form-control text-white" placeholder="🏆 Nombre del equipo" required>
+    </div>
+    <div class="mb-3">
+      <input [(ngModel)]="nuevoEquipo.country" name="country" class="form-control text-white" placeholder="🌍 País" required>
+    </div>
+    <div class="mb-3">
+      <input [(ngModel)]="nuevoEquipo.stadium" name="stadium" class="form-control text-white" placeholder="🏟️ Estadio" required>
+    </div>
+    <button type="submit" class="btn btn-success w-100">✅ Agregar Equipo</button>
+  </form>
+</div>

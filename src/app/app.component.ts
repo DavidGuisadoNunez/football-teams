@@ -1,12 +1,10 @@
 import { Component } from '@angular/core';
-import { TeamListComponent } from "./components/team-list/team-list.component";
+import { EquiposComponent } from './components/equipos/equipos.component';
 
 @Component({
   selector: 'app-root',
-  imports: [TeamListComponent],
-  templateUrl: './app.component.html',
-  styleUrl: './app.component.css'
+  standalone: true,
+  imports: [EquiposComponent],
+  template: `<app-equipos></app-equipos>`,
 })
-export class AppComponent {
-  title = 'football-teams';
-}
+export class AppComponent {}
