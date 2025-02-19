@@ -14,7 +14,7 @@ interface Equipo {
 })
 export class EquiposService {
   private http = inject(HttpClient);
-  private apiUrl = 'https://football-api-s3va.onrender.com/equipos';
+  private apiUrl = 'https://football-api-1-ckzy.onrender.com/equipos'; // ✅ Nueva URL de la API
 
   private headers = new HttpHeaders({ 'Content-Type': 'application/json' });
 
@@ -30,7 +30,8 @@ export class EquiposService {
   }
 
   // ✅ Eliminar equipo por ID
-  deleteEquipo(id: number): Observable<void> {
+  deleteEquipo(id: string): Observable<void> { // 🔹 MongoDB usa `id` como string (ObjectId)
     return this.http.delete<void>(`${this.apiUrl}/${id}`, { headers: this.headers });
   }
 }
+
