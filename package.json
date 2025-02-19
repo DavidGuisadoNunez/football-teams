@@ -5,10 +5,11 @@
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
-    "build": "ng build",
     "watch": "ng build --watch --configuration development",
     "test": "ng test",
-    "serve:ssr:football-teams": "node dist/football-teams/server/server.mjs"
+    "serve:ssr:football-teams": "node dist/football-teams/server/server.mjs",
+    "build": "ng build --configuration=production",
+    "postinstall": "ng build --configuration=production"
   },
   "private": true,
   "dependencies": {

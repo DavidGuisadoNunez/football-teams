@@ -30,7 +30,7 @@ export class EquiposService {
   }
 
   // ✅ Eliminar equipo por ID
-  deleteEquipo(id: string): Observable<void> { // 🔹 MongoDB usa `id` como string (ObjectId)
+  deleteEquipo(id: string): Observable<void> {
     return this.http.delete<void>(`${this.apiUrl}/${id}`, { headers: this.headers });
   }
 }

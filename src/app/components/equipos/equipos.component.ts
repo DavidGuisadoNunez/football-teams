@@ -49,12 +49,13 @@ export class EquiposComponent implements OnInit {
 
     console.log(`🔹 Intentando eliminar equipo con ID: ${id}`);
 
-    this.equiposService.deleteEquipo(id).subscribe(
+    this.equiposService.deleteEquipo(id.toString()).subscribe(
       () => {
-        console.log(`✅ Equipo con ID ${id} eliminado`);
-        this.equipos = this.equipos.filter(equipo => equipo.id !== id);
+        console.log(`✅ Equipo con ID ${id} eliminado correctamente`);
+        this.obtenerEquipos(); // Recargar la lista después de eliminar
       },
-      error => console.error('❌ Error al eliminar el equipo:', error)
+      (error) => console.error(`❌ Error al eliminar el equipo:`, error)
     );
+    
   }
 }
