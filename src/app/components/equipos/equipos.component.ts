@@ -44,18 +44,23 @@ export class EquiposComponent implements OnInit {
     );
   }
 
-  eliminarEquipo(id: number) {
+  eliminarEquipo(id: string) { // 🔹 Cambiamos el tipo a `string`
+    if (!id) {
+      console.error("❌ Error: ID no definido.");
+      return;
+    }
+  
     if (!confirm(`¿Seguro que deseas eliminar el equipo con ID ${id}?`)) return;
-
+  
     console.log(`🔹 Intentando eliminar equipo con ID: ${id}`);
-
-    this.equiposService.deleteEquipo(id.toString()).subscribe(
+  
+    this.equiposService.deleteEquipo(id).subscribe(
       () => {
         console.log(`✅ Equipo con ID ${id} eliminado correctamente`);
-        this.obtenerEquipos(); // Recargar la lista después de eliminar
+        this.obtenerEquipos(); // 🔄 Recargar la lista después de eliminar
       },
       (error) => console.error(`❌ Error al eliminar el equipo:`, error)
     );
-    
   }
+  
 }
